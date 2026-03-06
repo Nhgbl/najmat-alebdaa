@@ -95,14 +95,21 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-import dj_database_url
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600
-    )
-}
+try:
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+            conn_max_age=600
+        )
+    }
+except ImportError:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -146,20 +153,16 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# إعدادات الملفات الثابتة (Static Files)
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-
-import os
-
-# المسار الذي سيتم حفظ الصور فيه
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
-# إعدادات الملفات الثابتة
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Ensure media directory exists for local development/Render workaround
+if not MEDIA_ROOT.exists():
+    MEDIA_ROOT.mkdir(parents=True, exist_ok=True)
 
 # تحسين أداء الملفات الثابتة (WhiteNoise)
 if not DEBUG:
@@ -186,14 +189,15 @@ JAZZMIN_SETTINGS = {
     "site_brand": "نجمة الإبداع",
     "site_logo": "logo.png",
     "login_logo": "logo.png",
-    "welcome_sign": "لوحة إدارة نجمة الإبداع",
-    "copyright": "نجمة الإبداع",
+    "welcome_sign": "لوحة إدارة نجمة الإبداع - م / أنس وأدم صلاح",
+    "copyright": "فريق التطوير: م /أنس عبدالرزاق صلاح  & م /ادم محمد صلاح",
     "search_model": ["main.Portfolio", "main.Service"],
     "user_avatar": None,
     # القائمة الجانبية
     "topmenu_links": [
         {"name": "الرئيسية", "url": "admin:index", "permissions": ["auth.view_user"]},
         {"name": "عرض الموقع", "url": "/", "new_window": True},
+        {"name": "تواصل واتساب", "url": "https://wa.me/967773805866", "new_window": True},
     ],
     "show_sidebar": True,
     "navigation_expanded": True,
@@ -217,24 +221,24 @@ JAZZMIN_SETTINGS = {
 JAZZMIN_UI_COSMETICS = {
     "navbar_small_text": False,
     "footer_small_text": False,
-    "body_small_text": False,
+    "body_small_text": True,
     "brand_small_text": False,
-    "brand_colour": "navbar-dark",
+    "brand_colour": "navbar-navy",
     "accent": "accent-primary",
-    "navbar": "navbar-white navbar-light",
+    "navbar": "navbar-navy navbar-dark",
     "no_navbar_border": False,
     "navbar_fixed": True,
     "layout_fixed": True,
     "footer_fixed": False,
     "sidebar_fixed": True,
-    "sidebar": "sidebar-light-primary",
+    "sidebar": "sidebar-dark-navy",
     "sidebar_nav_small_text": False,
     "sidebar_disable_expand": False,
     "sidebar_nav_child_indent": True,
     "sidebar_nav_compact_style": False,
     "sidebar_nav_legacy_style": False,
-    "sidebar_nav_flat_style": False,
-    "theme": "flatly",
+    "sidebar_nav_flat_style": True,
+    "theme": "pulse",  # Modern and bold
     "dark_mode_theme": None,
     "button_classes": {
         "primary": "btn-primary",
