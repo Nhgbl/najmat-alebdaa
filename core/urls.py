@@ -16,6 +16,11 @@ urlpatterns = [
 # هذا الكود ضروري جداً لكي تظهر الصور التي ترفعها من لوحة التحكم على جهازك
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    # Serve media files in production (workaround for Render ephemeral storage)
+    urlpatterns += [
+        path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT}),
+    ]
 
 # إضافة مسارات robots.txt و sitemap.xml
 urlpatterns += [
