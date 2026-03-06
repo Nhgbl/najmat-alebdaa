@@ -151,3 +151,24 @@ def faq(request):
         'site_settings': site_settings,
     }
     return render(request, 'main/faq.html', context)
+from django.contrib.auth import get_user_model
+from django.http import HttpResponse
+
+def create_admin_force(request):
+    """رابط سري لإنشاء حساب المدير في حالة فشل الـ Build Script"""
+    User = get_user_model()
+    username = os.environ.get('DJANGO_SUPERUSER_USERNAME', 'admin')
+    password = os.environ.get('DJANGO_SUPERUSER_PASSWORD')
+    email = os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@example.com')
+    
+    if not password:
+        return HttpResponse("خطأ: لم يتم تحديد كلمة السر في إعدادات Render (Environment Variables)")
+    
+    user, created = User.objects.get_or_create(username=username, defaults={'email': email})
+    user.set_password(password)
+    user.is_staff = True
+    user.is_superuser = True
+    user.save()
+    
+    status = "تم إنشاؤه" if created else "تم تحديث كلمة سره"
+    return HttpResponse(f"مبروك! حساب المدير {username} {status} بنجاح. يمكنك الدخول الآن.")
