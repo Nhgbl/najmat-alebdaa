@@ -66,8 +66,11 @@ SECURE_CONTENT_SECURITY_POLICY = {
     'img-src': ("'self'", "data:", "https:"),
     'connect-src': ("'self'",),
 }
-X_FRAME_OPTIONS = 'DENY'
-SECURE_SSL_REDIRECT = False  # اجعلها True في الإنتاج مع HTTPS
+SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', 'False') == 'True'
+CSRF_TRUSTED_ORIGINS = [
+    'https://najmat-alebdaa.onrender.com',
+    'https://*.onrender.com'
+]
 
 ROOT_URLCONF = 'core.urls'
 
@@ -163,9 +166,9 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # إعدادات الجلسة والأمان
-SESSION_COOKIE_SECURE = False  # اجعلها True في الإنتاج مع HTTPS
+SESSION_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_HTTPONLY = True
-CSRF_COOKIE_SECURE = False  # اجعلها True في الإنتاج مع HTTPS
+CSRF_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_HTTPONLY = True
 
 # إعدادات الأداء
