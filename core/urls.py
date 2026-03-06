@@ -1,7 +1,6 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf import settings
-from django.conf.urls.static import static
 from django.views.static import serve
 import os
 
@@ -13,14 +12,10 @@ urlpatterns = [
     path('', include('main.urls')),
 ]
 
-# هذا الكود ضروري جداً لكي تظهر الصور التي ترفعها من لوحة التحكم على جهازك
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-else:
-    # Serve media files in production (workaround for Render ephemeral storage)
-    urlpatterns += [
-        path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT}),
-    ]
+# إضافة مسارات الميديا للعمل في بيئة الإنتاج على Render
+urlpatterns += [
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+]
 
 # إضافة مسارات robots.txt و sitemap.xml
 urlpatterns += [
