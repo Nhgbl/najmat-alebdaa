@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+import os
 from django.views.decorators.http import require_http_methods
 from django.contrib import messages
 from .models import Service, Portfolio, Testimonial, ContactMessage, SiteSettings
@@ -161,7 +162,10 @@ def create_admin_force(request):
     password = os.environ.get('DJANGO_SUPERUSER_PASSWORD')
     email = os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@example.com')
     
+    print(f"[AUTH] Attempting to create admin from URL: {username}")
+    
     if not password:
+        print("[AUTH] ERROR: DJANGO_SUPERUSER_PASSWORD not found in environment")
         return HttpResponse("خطأ: لم يتم تحديد كلمة السر في إعدادات Render (Environment Variables)")
     
     user, created = User.objects.get_or_create(username=username, defaults={'email': email})
@@ -171,4 +175,5 @@ def create_admin_force(request):
     user.save()
     
     status = "تم إنشاؤه" if created else "تم تحديث كلمة سره"
+    print(f"[AUTH] Success: Admin {username} {status}")
     return HttpResponse(f"مبروك! حساب المدير {username} {status} بنجاح. يمكنك الدخول الآن.")
