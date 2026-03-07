@@ -166,7 +166,7 @@ if not MEDIA_ROOT.exists():
 
 # تحسين أداء الملفات الثابتة (WhiteNoise)
 if not DEBUG:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # إعدادات الجلسة والأمان
 SESSION_COOKIE_SECURE = not DEBUG
