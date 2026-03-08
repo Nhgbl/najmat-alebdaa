@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'main/base.html' %}
 {% load static %}
 
 {% block title %}مؤسسة نجمة الإبداع | زجاج السعودية | زجاج سكريت خميس مشيط{% endblock %}
@@ -49,9 +49,14 @@
                 </div>
             </div>
             <div class="col-lg-6 text-center" data-aos="fade-left">
+                {% if site_settings.logo %}
                 <img src="{{ site_settings.logo.url }}" alt="مؤسسة نجمة الإبداع" class="logo-img"
                     onerror="this.src='/static/logo.png';"
                     style="max-width: 350px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
+                {% else %}
+                <img src="{% static 'logo.png' %}" alt="مؤسسة نجمة الإبداع" class="logo-img"
+                    style="max-width: 350px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));">
+                {% endif %}
             </div>
         </div>
     </div>
