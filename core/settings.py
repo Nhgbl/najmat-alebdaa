@@ -160,6 +160,14 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# إعدادات التخزين السحابي (Supabase)
+SUPABASE_URL = os.getenv('SUPABASE_URL', 'https://yumshpcohoalyancufzi.supabase.co')
+SUPABASE_KEY = os.getenv('SUPABASE_KEY', 'sb_publishable_YwTQDhK3KDeFmAkvf4cOhA_ogcoPe3P')
+SUPABASE_BUCKET = os.getenv('SUPABASE_BUCKET', 'media')
+
+if SUPABASE_URL and SUPABASE_KEY:
+    DEFAULT_FILE_STORAGE = 'main.storage.SupabaseStorage'
+
 # Ensure media directory exists for local development/Render workaround
 if not MEDIA_ROOT.exists():
     MEDIA_ROOT.mkdir(parents=True, exist_ok=True)
