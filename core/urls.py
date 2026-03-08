@@ -14,7 +14,7 @@ urlpatterns = [
 
 # إضافة مسارات الميديا للعمل في بيئة الإنتاج على Render
 urlpatterns += [
-    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
 ]
 
 # إضافة مسارات robots.txt و sitemap.xml

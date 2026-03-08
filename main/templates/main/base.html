@@ -281,9 +281,10 @@
             <a class="navbar-brand" href="{% url 'main:home' %}">
                 {% if site_settings.logo %}
                 <img src="{{ site_settings.logo.url }}" alt="مؤسسة نجمة الإبداع" class="logo-img"
-                    onerror="this.src='/static/logo.png'">
+                    onerror="this.onerror=null; this.src='/static/logo.png';">
                 {% else %}
-                <img src="/static/logo.png" alt="مؤسسة نجمة الإبداع" class="logo-img">
+                <img src="/static/logo.png" alt="مؤسسة نجمة الإبداع" class="logo-img"
+                    onerror="this.onerror=null; this.src='/static/logo.png';">
                 {% endif %}
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
