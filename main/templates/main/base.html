@@ -62,7 +62,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://najmat.com/">
 
-    <title>{% block title %}نجمة الإبداع | زجاج سكريت السعودية | زجاج خميس مشيط{% endblock %}</title>
+    <title>{% block title %}نجمة الإبداع | زجاج السعودية | زجاج خميس مشيط{% endblock %}</title>
 
     <!-- خطوط جوجل -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,15 +77,15 @@
 
     <style>
         :root {
-            --primary: #FFD700;
-            --primary-dark: #b8860b;
-            --bg-dark: #0a0a0b;
-            --card-bg: #1a1a1c;
-            --text-gold: #FFD700;
+            --primary: #ffd102;
+            --primary-dark: #ccaa00;
+            --bg-dark: #151306;
+            --card-bg: #1c1907;
+            --text-gold: #ffd102;
             --text-white: #f8f9fa;
             --dark-gray: #111113;
             --light-gray: #1f1f22;
-            --main-yellow: #FFD700;
+            --main-yellow: #ffd102;
             --main-black: #000000;
         }
 
@@ -164,7 +164,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.05) 0%, rgba(10, 10, 11, 1) 70%);
+            background: radial-gradient(circle at center, rgba(255, 209, 2, 0.05) 0%, rgba(21, 19, 6, 1) 70%);
             padding: 120px 0 80px;
             text-align: center;
         }
@@ -172,7 +172,7 @@
         .hero-content h1 {
             font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 900;
-            background: linear-gradient(135deg, #fff 0%, #FFD700 100%);
+            background: linear-gradient(135deg, #fff 0%, #ffd102 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -349,7 +349,8 @@
                     <h5>معلومات التواصل</h5>
                     <p>
                         <i class="fas fa-phone-alt text-yellow"></i>
-                        <a href="tel:{{ site_settings.phone }}" class="text-decoration-none">{{ site_settings.phone }}</a>
+                        <a href="tel:{{ site_settings.phone }}" class="text-decoration-none">{{ site_settings.phone
+                            }}</a>
                     </p>
                     <p>
                         <i class="fas fa-map-marker-alt text-yellow"></i>
@@ -358,7 +359,8 @@
                     {% if site_settings.email %}
                     <p>
                         <i class="fas fa-envelope text-yellow"></i>
-                        <a href="mailto:{{ site_settings.email }}" class="text-decoration-none">{{ site_settings.email}}</a>
+                        <a href="mailto:{{ site_settings.email }}" class="text-decoration-none">{{ site_settings.email
+                            }}</a>
                     </p>
                     {% endif %}
                 </div>
