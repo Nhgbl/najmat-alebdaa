@@ -40,13 +40,8 @@ endblock %}
                 </a>
             </div>
             <div class="col-lg-6" data-aos="fade-left">
-                {% if site_settings.logo %}
                 <img src="{{ site_settings.logo.url }}" alt="مؤسسة نجمة الإبداع" class="img-fluid"
                     style="max-width: 400px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));">
-                {% else %}
-                <img src="{% static 'logo.png' %}" alt="مؤسسة نجمة الإبداع" class="img-fluid"
-                    style="max-width: 400px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));">
-                {% endif %}
             </div>
         </div>
     </div>
@@ -59,7 +54,7 @@ endblock %}
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
                 <div class="service-box">
-                    <i class="fas fa-target" style="color: var(--main-yellow);"></i>
+                    <i class="fas fa-bullseye" style="color: var(--main-yellow);"></i>
                     <h4>رؤيتنا</h4>
                     <p>أن نكون الخيار الأول والموثوق في مجال تركيب وتوريد الزجاج السكريت في المنطقة.</p>
                 </div>
