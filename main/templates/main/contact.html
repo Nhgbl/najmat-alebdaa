@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}تواصل معنا - مؤسسة نجمة الإبداع{% endblock %}
 
@@ -148,80 +148,6 @@ endblock %}
             </div>
             {% endif %}
         </div>
-    </div>
-</div>
-
-<!-- قسم الأسئلة الشائعة -->
-<div class="section">
-    <div class="container">
-        <h2 class="section-title text-yellow mb-5">أسئلة شائعة</h2>
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <div class="accordion" id="faqAccordion">
-                    <div class="accordion-item"
-                        style="background-color: var(--dark-gray); border-color: var(--main-yellow);">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#faq1"
-                                style="background-color: var(--dark-gray); color: var(--main-yellow); font-weight: bold;">
-                                كم الوقت المستغرق للرد على الرسائل؟
-                            </button>
-                        </h2>
-                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body" style="background-color: var(--light-gray);">
-                                نحن نرد على جميع الرسائل خلال 24 ساعة على الأقل. للاستفسارات العاجلة، يرجى التواصل معنا
-                                عبر الواتساب.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item"
-                        style="background-color: var(--dark-gray); border-color: var(--main-yellow); margin-top: 10px;">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#faq2"
-                                style="background-color: var(--dark-gray); color: var(--main-yellow); font-weight: bold;">
-                                هل تقدمون استشارات مجانية؟
-                            </button>
-                        </h2>
-                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body" style="background-color: var(--light-gray);">
-                                نعم، نقدم استشارات تصميمية مجانية من قبل خبرائنا. تواصل معنا لحجز موعد.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item"
-                        style="background-color: var(--dark-gray); border-color: var(--main-yellow); margin-top: 10px;">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#faq3"
-                                style="background-color: var(--dark-gray); color: var(--main-yellow); font-weight: bold;">
-                                هل تعملون في أيام العطل الرسمية؟
-                            </button>
-                        </h2>
-                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body" style="background-color: var(--light-gray);">
-                                نعم، نعمل طوال أيام الأسبوع. يمكنك التواصل معنا في أي وقت.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- قسم الدعوة للعمل -->
-<div class="section" style="background-color: var(--dark-gray);">
-    <div class="container text-center">
-        <h2 class="section-title text-yellow mb-5">نحن بانتظارك</h2>
-        <p class="fs-5 mb-5" style="color: #ddd;">اختر الطريقة التي تناسبك للتواصل معنا</p>
-        <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank"
-            class="btn btn-yellow btn-lg px-5 py-3 fs-5 me-3">
-            <i class="fab fa-whatsapp me-2"></i> واتساب
-        </a>
-        <a href="tel:{{ site_settings.phone }}" class="btn btn-outline-warning btn-lg px-5 py-3 fs-5">
-            <i class="fas fa-phone-alt me-2"></i> اتصل بنا
-        </a>
     </div>
 </div>
 
