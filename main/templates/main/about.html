@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'main/base.html' %}
 {% load static %}
 
 {% block title %}من نحن - مؤسسة نجمة الإبداع{% endblock %}
@@ -40,8 +40,13 @@ endblock %}
                 </a>
             </div>
             <div class="col-lg-6" data-aos="fade-left">
+                {% if site_settings.logo %}
                 <img src="{{ site_settings.logo.url }}" alt="مؤسسة نجمة الإبداع" class="img-fluid"
                     style="max-width: 400px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));">
+                {% else %}
+                <img src="{% static 'logo.png' %}" alt="مؤسسة نجمة الإبداع" class="img-fluid"
+                    style="max-width: 400px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));">
+                {% endif %}
             </div>
         </div>
     </div>
@@ -152,8 +157,30 @@ endblock %}
     </div>
 </div>
 
-<!-- قسم الدعوة للعمل -->
+<!-- قسم الخدمات -->
 <div class="section" style="background-color: var(--dark-gray);">
+    <div class="container">
+        <h2 class="section-title text-yellow mb-5">خدماتنا</h2>
+        <div class="row">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="service-box">
+                    <i class="fas fa-check"></i>
+                    <h4>{{ service.title }}</h4>
+                    <p>{{ service.description }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">سيتم إضافة الخدمات قريباً...</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- قسم الدعوة للعمل -->
+<div class="section">
     <div class="container text-center">
         <h2 class="section-title text-yellow mb-5">هل تريد معرفة المزيد؟</h2>
         <p class="fs-5 mb-5" style="color: #ddd;">تواصل معنا اليوم واحصل على استشارة مجانية</p>
