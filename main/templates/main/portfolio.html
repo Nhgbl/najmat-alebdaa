@@ -1,8 +1,13 @@
 {% extends 'main/base.html' %}
 {% load static %}
+
 {% block title %}أعمالنا - مؤسسة نجمة الإبداع{% endblock %}
+
+{% block meta_description %}شاهد نماذج من أعمالنا وإنجازاتنا في مجال تركيب الزجاج السكريت.{% endblock %}
+
 {% block content %}
 
+<!-- قسم البطل -->
 <div class="hero-section">
     <div class="container">
         <h1 class="text-yellow fw-bold mb-4">أعمالنا</h1>
@@ -10,33 +15,150 @@
     </div>
 </div>
 
+<!-- قسم التصفية والمعرض -->
 <div class="section py-5">
     <div class="container">
+        <!-- فلاتر الفئات -->
+        {% if categories %}
+        <div class="text-center mb-5" data-aos="fade-up">
+            <a href="{% url 'main:portfolio' %}"
+                class="btn btn-sm {% if not selected_category %}btn-yellow{% else %}btn-outline-warning{% endif %} me-2 mb-2 px-4 py-2 rounded-pill">
+                جميع الأعمال
+            </a>
+            {% for category in categories %}
+            {% if category %}
+            <a href="?category={{ category }}"
+                class="btn btn-sm {% if selected_category == category %}btn-yellow{% else %}btn-outline-warning{% endif %} me-2 mb-2 px-4 py-2 rounded-pill">
+                {{ category }}
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- شبكة الأعمال -->
         <div class="row">
             {% for item in portfolios %}
             <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
                 <div class="portfolio-box">
-                    <div style="position: relative; overflow: hidden; border-radius: 12px;">
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ item.title }}" onerror="this.onerror=null; this.src='/static/logo.png';">
+                    <div style="position: relative; overflow: hidden; border-radius: 12px; height: 250px;">
+                        
+                        <!-- التحقق إذا كان هناك فيديو -->
+                        {% if item.video %}
+                            <!-- عرض صورة البوستر إذا كانت موجودة، وإلا عرض بوستر افتراضي -->
+                            {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}"
+                                style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"
+                                onerror="this.onerror=null; this.src='/static/video_poster.png';">
+                            {% else %}
+                            <img src="/static/video_poster.png" alt="{{ item.title }}"
+                                style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                            {% endif %}
+                            
+                            <!-- زر تشغيل الفيديو الشفاف فوق البوستر -->
+                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; transition: 0.3s ease;"
+                                class="video-overlay">
+                                <a href="{{ item.video.url }}" target="_blank"
+                                    style="display: flex; align-items: center; justify-content: center; width: 65px; height: 65px; background-color: var(--primary); border-radius: 50%; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);"
+                                    class="play-button" aria-label="شغل الفيديو"
+                                    onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 25px rgba(255, 215, 0, 0.8)';"
+                                    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 15px rgba(255, 215, 0, 0.5)';">
+                                    <i class="fas fa-play" style="color: #000; font-size: 26px; margin-right: 4px;"></i>
+                                </a>
+                            </div>
+
+                        <!-- إذا لم يكن هناك فيديو ولكن توجد صورة -->
+                        {% elif item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}"
+                                style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"
+                                onerror="this.onerror=null; this.src='/static/logo.png';">
+
+                        <!-- إذا لم يكن هناك لا فيديو ولا صورة -->
                         {% else %}
-                        <div class="d-flex align-items-center justify-content-center bg-dark" style="height: 250px;"><i class="fas fa-image fs-1 text-yellow"></i></div>
+                            <div style="width: 100%; height: 100%; background-color: var(--card-bg); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 215, 0, 0.1);">
+                                <i class="fas fa-image" style="font-size: 4rem; color: var(--primary); opacity: 0.5;"></i>
+                            </div>
                         {% endif %}
                     </div>
-                    <div class="content mt-3">
+
+                    <div class="content mt-4">
+                        {% if item.title %}
                         <h5 class="text-yellow fw-bold">{{ item.title }}</h5>
+                        {% endif %}
+                        
+                        {% if item.category %}
+                        <p class="text-muted small mb-2"><i class="fas fa-tag text-yellow me-1"></i> {{ item.category }}</p>
+                        {% endif %}
+                        
+                        {% if item.description %}
                         <p class="text-muted small mb-3">{{ item.description|truncatewords:20 }}</p>
-                        <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank" class="btn btn-sm btn-yellow w-100"><i class="fab fa-whatsapp"></i> استفسر</a>
+                        {% endif %}
+                        
+                        <div class="mt-3">
+                            {% if item.video %}
+                            <a href="{{ item.video.url }}" target="_blank" class="btn btn-sm btn-outline-warning me-2">
+                                <i class="fas fa-play"></i> عرض الفيديو
+                            </a>
+                            {% endif %}
+                            <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank"
+                                class="btn btn-sm btn-yellow">
+                                <i class="fab fa-whatsapp"></i> استفسر
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             {% empty %}
-            <div class="col-12 text-center py-5">
-                <i class="fas fa-images fs-1 text-yellow mb-3"></i>
-                <p class="text-muted fs-5">لم يتم العثور على أعمال</p>
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <i class="fas fa-images"
+                        style="font-size: 4rem; color: var(--main-yellow); margin-bottom: 20px; display: block; opacity: 0.7;"></i>
+                    <p class="text-muted fs-5">لم يتم العثور على أعمال في هذه الفئة</p>
+                </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </div>
+
+<!-- قسم الإحصائيات -->
+<div class="section py-5" style="background-color: var(--dark-gray);">
+    <div class="container">
+        <h2 class="section-title text-yellow mb-5">إحصائياتنا</h2>
+        <div class="row text-center">
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">{{ portfolios|length }}+</h3>
+                <p class="text-muted">مشروع منجز</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">100+</h3>
+                <p class="text-muted">عميل راضي</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">15+</h3>
+                <p class="text-muted">سنة خبرة</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-yellow fw-bold" style="font-size: 2.5rem;">100%</h3>
+                <p class="text-muted">رضا العملاء</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- قسم الدعوة للعمل -->
+<div class="section py-5">
+    <div class="container text-center">
+        <h2 class="section-title text-yellow mb-5">هل أعجبتك أعمالنا؟</h2>
+        <p class="fs-5 mb-5 text-muted">تواصل معنا اليوم لتحويل مشروعك إلى واقع</p>
+        <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank"
+            class="btn btn-yellow btn-lg px-5 py-3 fs-5 me-3">
+            <i class="fab fa-whatsapp me-2"></i> واتساب
+        </a>
+        <a href="{% url 'main:contact' %}" class="btn btn-outline-warning btn-lg px-5 py-3 fs-5">
+            <i class="fas fa-envelope me-2"></i> نموذج التواصل
+        </a>
+    </div>
+</div>
+
 {% endblock %}
