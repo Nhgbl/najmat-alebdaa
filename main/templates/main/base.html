@@ -1,14 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="{% block meta_description %}نجمة الإبداع - أفضل مؤسسة زجاج في السعودية وقميس مشيط. متخصصون في تركيب زجاج سكريت، واجهات زجاجية، وسواتر بأعلى جودة.{% endblock %}">
-    <meta name="keywords"
-        content="زجاج السعودية, زجاج خميس مشيط, زجاج سكريت, واجهات زجاج, تركيب زجاج, سواتر زجاج, شركة زجاج السعودية">
+    <meta name="description" content="{% block meta_description %}نجمة الإبداع - أفضل مؤسسة زجاج في السعودية وقميس مشيط. متخصصون في تركيب زجاج سكريت، واجهات زجاجية، وسواتر بأعلى جودة.{% endblock %}">
+    <meta name="keywords" content="زجاج السعودية, زجاج خميس مشيط, زجاج سكريت, واجهات زجاج, تركيب زجاج, سواتر زجاج, شركة زجاج السعودية">
     <meta name="author" content="مؤسسة نجمة الإبداع">
 
     <!-- Schema.org JSON-LD for LocalBusiness SEO -->
@@ -36,14 +33,7 @@
       },
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Saturday",
-          "Sunday",
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday"
-        ],
+        "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
         "opens": "08:00",
         "closes": "20:00"
       },
@@ -55,10 +45,9 @@
     }
     </script>
 
-    <!-- Open Graph Meta Tags لتحسين المشاركة على وسائل التواصل -->
+    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="{% block og_title %}مؤسسة نجمة الإبداع لزجاج السكريت - السعودية{% endblock %}">
-    <meta property="og:description"
-        content="{% block og_description %}تركيب وتوريد جميع أنواع زجاج السكريت والواجهات في خميس مشيط وجميع مناطق المملكة.{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}تركيب وتوريد جميع أنواع زجاج السكريت والواجهات في خميس مشيط وجميع مناطق المملكة.{% endblock %}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://najmat.com/">
 
@@ -70,9 +59,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <!-- بوتستراب -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
-    <!-- مكتبة الأيقونات (FontAwesome) -->
+    <!-- مكتبة الأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS - Animate On Scroll -->
+    <!-- AOS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 
     <style>
@@ -80,219 +69,184 @@
             --primary: #FFD700;
             --primary-dark: #b8860b;
             --bg-dark: #0a0a0b;
-            --card-bg: #1a1a1c;
-            --text-gold: #FFD700;
-            --text-white: #f8f9fa;
+            --card-bg: #151516; /* أفتح قليلاً من الخلفية */
+            --text-main: #e8e8e8; /* مريح جداً للعين */
+            --text-muted: #a8a8a8; /* رمادي مريح */
             --dark-gray: #111113;
             --light-gray: #1f1f22;
-            --main-yellow: #FFD700;
-            --main-black: #000000;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg-dark);
-            color: var(--text-white);
+            color: var(--text-main);
             font-family: 'Cairo', sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-        /* Navbar - Modern & Glass */
+        p, span, div { color: var(--text-main); }
+        .text-muted { color: var(--text-muted) !important; }
+        .text-yellow { color: var(--primary) !important; }
+
+        /* Navbar */
         .navbar {
-            background-color: rgba(10, 10, 11, 0.9);
+            background-color: rgba(10, 10, 11, 0.95);
             backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+            padding: 15px 0;
             transition: 0.3s;
         }
 
         .navbar-brand .logo-img {
-            width: 75px;
-            height: 75px !important;
-            border-radius: 50%;
-            border: 2px solid var(--primary);
-            padding: 4px;
-            background: #000;
-            transition: 0.3s;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            width: 75px; height: 75px !important;
+            border-radius: 50%; border: 2px solid var(--primary);
+            padding: 4px; background: #000;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
         }
 
         .navbar-brand:hover .logo-img {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+            transform: scale(1.08) rotate(5deg);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
         }
 
         .nav-link {
-            color: #fff !important;
-            font-weight: 700;
-            margin: 0 12px;
-            transition: 0.3s;
-            opacity: 0.85;
-            position: relative;
+            color: var(--text-main) !important;
+            font-weight: 700; margin: 0 12px;
+            transition: all 0.3s ease; position: relative;
         }
 
-        .nav-link:hover {
-            opacity: 1;
-            color: var(--primary) !important;
-        }
+        .nav-link:hover { color: var(--primary) !important; transform: translateY(-2px); }
 
         .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
+            content: ''; position: absolute;
+            width: 0; height: 2px;
+            bottom: -5px; left: 50%;
             background: var(--primary);
-            transition: 0.3s;
-            transform: translateX(-50%);
+            transition: 0.3s ease; transform: translateX(-50%);
         }
 
-        .nav-link:hover::after {
-            width: 80%;
+        .nav-link:hover::after { width: 100%; }
+
+        /* Buttons Animations */
+        .btn-yellow {
+            background: linear-gradient(45deg, var(--primary), #ffc107);
+            color: #000 !important; font-weight: bold;
+            border: none; border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
         }
 
-        /* Hero - Dynamic & Flexible */
-        .hero-section {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.05) 0%, rgba(10, 10, 11, 1) 70%);
-            padding: 120px 0 80px;
-            text-align: center;
+        .btn-yellow:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
         }
 
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 900;
-            background: linear-gradient(135deg, #fff 0%, #FFD700 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
+        .btn-outline-warning {
+            border: 2px solid var(--primary);
+            color: var(--primary); font-weight: bold;
+            border-radius: 8px; transition: all 0.3s ease;
         }
 
-        .hero-content p {
-            font-size: clamp(1.1rem, 3vw, 1.8rem);
-            max-width: 800px;
-            margin: 0 auto 40px;
-            opacity: 0.9;
+        .btn-outline-warning:hover {
+            background-color: var(--primary); color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
         }
 
-        /* Cards - Easy & Modern */
-        .service-box,
-        .portfolio-box,
-        .testimonial-box {
+        a { text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: var(--primary); }
+
+        /* Cards */
+        .service-box, .portfolio-box, .testimonial-box {
             background: var(--card-bg);
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            height: 100%;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.05);
+            border-radius: 20px; padding: 30px; height: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .service-box:hover,
-        .portfolio-box:hover {
+        .service-box:hover, .portfolio-box:hover, .testimonial-box:hover {
             transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.4);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.15);
         }
 
         .portfolio-box img {
-            border-radius: 12px;
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            margin-bottom: 15px;
+            border-radius: 12px; width: 100%;
+            height: 250px; object-fit: cover; margin-bottom: 15px;
+        }
+
+        /* WhatsApp Pulse Animation */
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px;
+            bottom: 30px; right: 30px;
+            background-color: #25d366; color: #FFF !important;
+            border-radius: 50px; text-align: center; font-size: 30px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100; display: flex; align-items: center; justify-content: center;
+            animation: pulse-whatsapp 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1); animation: none; color: #fff;
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Hero */
+        .hero-section {
+            min-height: 90vh; display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.08) 0%, rgba(10, 10, 11, 1) 70%);
+            padding: 120px 0 80px; text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #FFD700 100%);
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
         }
 
         .section-title {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 900;
-            margin-bottom: 50px;
-            text-align: center;
-            color: var(--primary);
+            font-size: clamp(2rem, 5vw, 3rem); font-weight: 900;
+            margin-bottom: 50px; text-align: center; color: var(--primary);
         }
 
-        /* Mobile Adjustments */
         @media (max-width: 991px) {
             .navbar-collapse {
-                background: #111;
-                padding: 20px;
-                border-radius: 15px;
-                margin-top: 15px;
-                border: 1px solid rgba(255, 215, 0, 0.2);
-            }
-
-            .nav-link {
-                margin: 10px 0;
+                background: #111; padding: 20px; border-radius: 15px;
+                margin-top: 15px; border: 1px solid rgba(255, 215, 0, 0.2);
             }
         }
 
         @media (max-width: 768px) {
-
-            .navbar {
-                padding: 10px 0;
-            }
-
-            .hero-section h1 {
-                font-size: 2rem;
-            }
-
-            .hero-section p {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .portfolio-box img {
-                height: 200px;
-            }
-
-            .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 24px;
-            }
-
-            .btn-lg {
-                width: 100%;
-                margin-bottom: 10px;
-                margin-right: 0 !important;
-            }
+            .hero-section { min-height: 70vh; }
+            .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; font-size: 24px; }
+            .btn-lg { width: 100%; margin-bottom: 10px; margin-right: 0 !important; }
         }
     </style>
-
     {% block extra_css %}{% endblock %}
 </head>
 
 <body>
-    <!-- القائمة العلوية (Navbar) -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'main:home' %}">
                 {% if site_settings.logo %}
-                <img src="{{ site_settings.logo.url }}" alt="مؤسسة نجمة الإبداع" class="logo-img"
-                    onerror="this.onerror=null; this.src='/static/logo.png';">
+                <img src="{{ site_settings.logo.url }}" alt="مؤسسة نجمة الإبداع" class="logo-img" onerror="this.onerror=null; this.src='/static/logo.png';">
                 {% else %}
-                <img src="/static/logo.png" alt="مؤسسة نجمة الإبداع" class="logo-img"
-                    onerror="this.onerror=null; this.src='/static/logo.png';">
+                <img src="/static/logo.png" alt="مؤسسة نجمة الإبداع" class="logo-img" onerror="this.onerror=null; this.src='/static/logo.png';">
                 {% endif %}
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -309,119 +263,75 @@
         </div>
     </nav>
 
-    <!-- المحتوى الرئيسي -->
     <main>
         {% if messages %}
         <div class="container mt-4">
             {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show bg-dark border-warning text-light" role="alert">
                 {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             {% endfor %}
         </div>
         {% endif %}
-
         {% block content %}{% endblock %}
     </main>
 
-    <!-- الفوتر -->
-    <footer class="footer">
+    <footer class="footer mt-5 pt-5 pb-3 bg-dark">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 footer-section mb-4">
-                    <h5>عن المؤسسة</h5>
-                    <p>مؤسسة نجمة الإبداع متخصصة في تركيب وتوريد جميع أنواع زجاج السكريت بأعلى جودة واحترافية.</p>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-yellow">عن المؤسسة</h5>
+                    <p class="text-muted">مؤسسة نجمة الإبداع متخصصة في تركيب وتوريد جميع أنواع زجاج السكريت بأعلى جودة واحترافية.</p>
                 </div>
-
-                <div class="col-lg-3 col-md-6 footer-section mb-4">
-                    <h5>الروابط السريعة</h5>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-yellow">الروابط السريعة</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{% url 'main:home' %}">الرئيسية</a></li>
-                        <li><a href="{% url 'main:about' %}">من نحن</a></li>
-                        <li><a href="{% url 'main:services' %}">الخدمات</a></li>
-                        <li><a href="{% url 'main:portfolio' %}">الأعمال</a></li>
-                        <li><a href="{% url 'main:contact' %}">التواصل</a></li>
+                        <li><a href="{% url 'main:home' %}" class="text-muted">الرئيسية</a></li>
+                        <li><a href="{% url 'main:about' %}" class="text-muted">من نحن</a></li>
+                        <li><a href="{% url 'main:services' %}" class="text-muted">الخدمات</a></li>
+                        <li><a href="{% url 'main:portfolio' %}" class="text-muted">الأعمال</a></li>
+                        <li><a href="{% url 'main:contact' %}" class="text-muted">التواصل</a></li>
                     </ul>
                 </div>
-
-                <div class="col-lg-3 col-md-6 footer-section mb-4">
-                    <h5>معلومات التواصل</h5>
-                    <p>
-                        <i class="fas fa-phone-alt text-yellow"></i>
-                        <a href="tel:{{ site_settings.phone }}" class="text-decoration-none">{{ site_settings.phone
-                            }}</a>
-                    </p>
-                    <p>
-                        <i class="fas fa-map-marker-alt text-yellow"></i>
-                        {{ site_settings.address }}
-                    </p>
+                <div class="col-lg-3 col-md-6 mb-4 text-muted">
+                    <h5 class="text-yellow">معلومات التواصل</h5>
+                    <p><i class="fas fa-phone-alt text-yellow me-2"></i> <a href="tel:{{ site_settings.phone }}" class="text-muted">{{ site_settings.phone }}</a></p>
+                    <p><i class="fas fa-map-marker-alt text-yellow me-2"></i> {{ site_settings.address }}</p>
                     {% if site_settings.email %}
-                    <p>
-                        <i class="fas fa-envelope text-yellow"></i>
-                        <a href="mailto:{{ site_settings.email }}" class="text-decoration-none">{{ site_settings.email
-                            }}</a>
-                    </p>
+                    <p><i class="fas fa-envelope text-yellow me-2"></i> <a href="mailto:{{ site_settings.email }}" class="text-muted">{{ site_settings.email }}</a></p>
                     {% endif %}
                 </div>
-
-                <div class="col-lg-3 col-md-6 footer-section mb-4">
-                    <h5>تابعنا</h5>
-                    <div class="social-icons">
-                        {% if site_settings.facebook %}
-                        <a href="{{ site_settings.facebook }}" target="_blank" title="فيسبوك">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        {% endif %}
-                        {% if site_settings.instagram %}
-                        <a href="{{ site_settings.instagram }}" target="_blank" title="إنستجرام">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        {% endif %}
-                        {% if site_settings.twitter %}
-                        <a href="{{ site_settings.twitter }}" target="_blank" title="تويتر">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        {% endif %}
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-yellow">تابعنا</h5>
+                    <div class="social-icons fs-4">
+                        {% if site_settings.facebook %}<a href="{{ site_settings.facebook }}" target="_blank" class="text-muted me-3"><i class="fab fa-facebook-f"></i></a>{% endif %}
+                        {% if site_settings.instagram %}<a href="{{ site_settings.instagram }}" target="_blank" class="text-muted me-3"><i class="fab fa-instagram"></i></a>{% endif %}
+                        {% if site_settings.twitter %}<a href="{{ site_settings.twitter }}" target="_blank" class="text-muted me-3"><i class="fab fa-twitter"></i></a>{% endif %}
                     </div>
                 </div>
             </div>
-
             <hr style="border-color: var(--light-gray); margin: 30px 0;">
-
-            <div class="row">
+            <div class="row text-muted">
                 <div class="col-md-6 text-center text-md-start">
                     <p>&copy; 2026 مؤسسة نجمة الإبداع. جميع الحقوق محفوظة.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <p>تم المتابعة والتطوير بواسطة <a href="https://wa.me/967773805866" target="_blank"
-                            class="text-yellow text-decoration-none">م /أنس عبدالرزاق صلاح & م /أدم محمد صلاح</a></p>
+                    <p>تم المتابعة والتطوير بواسطة <a href="https://wa.me/967773805866" target="_blank" class="text-yellow fw-bold">م /أنس عبدالرزاق صلاح & م /أدم محمد صلاح</a></p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- زر الواتساب العائم -->
-    <a href="https://wa.me/{{ site_settings.whatsapp }}" class="whatsapp-float" target="_blank"
-        title="تواصل معنا عبر واتساب">
+    <a href="https://wa.me/{{ site_settings.whatsapp }}" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- سكربت بوتستراب -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS - Animate On Scroll -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
     <script>
-        // تهيئة AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-        });
+        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
     </script>
-
     {% block extra_js %}{% endblock %}
 </body>
-
 </html>
