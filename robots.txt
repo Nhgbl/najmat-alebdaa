@@ -6,7 +6,7 @@ Disallow: /media/
 Disallow: /search/
 
 # Sitemaps
-Sitemap: https://najmat.com/sitemap.xml
+Sitemap: https://najmat-alebdaa.com/sitemap.xml
 
 # Crawl delay
 Crawl-delay: 1
